@@ -39,25 +39,30 @@ def load_models():
 
 class CustomerFeatures(BaseModel):
     """
-    Raw customer fields. Extend this list to match every column
-    your preprocessing pipeline expects for a single customer.
+    Raw customer fields, matching every column the churn/LTV models
+    were trained on (see models/X_test.csv for the reference schema).
     """
+    gender: str = Field(..., example="Female")
+    SeniorCitizen: int = Field(..., example=0, description="1 = senior citizen, 0 = not")
+    Partner: str = Field(..., example="Yes")
+    Dependents: str = Field(..., example="No")
     tenure: int = Field(..., example=12, description="Months as a customer")
+    PhoneService: str = Field(..., example="Yes")
+    MultipleLines: str = Field(..., example="No")
+    InternetService: str = Field(..., example="Fiber optic")
+    OnlineSecurity: str = Field(..., example="No")
+    OnlineBackup: str = Field(..., example="Yes")
+    DeviceProtection: str = Field(..., example="No")
+    TechSupport: str = Field(..., example="No")
+    StreamingTV: str = Field(..., example="Yes")
+    StreamingMovies: str = Field(..., example="No")
+    Contract: str = Field(..., example="Month-to-month")
+    PaperlessBilling: str = Field(..., example="Yes")
+    PaymentMethod: str = Field(..., example="Electronic check")
     MonthlyCharges: float = Field(..., example=70.35)
     TotalCharges: float = Field(..., example=845.50)
-    Contract: str = Field(..., example="Month-to-month")
-    InternetService: str = Field(..., example="Fiber optic")
-    PaymentMethod: str = Field(..., example="Electronic check")
-    # Add remaining columns your model was trained on, e.g.:
-    # gender: str
-    # SeniorCitizen: int
-    # Partner: str
-    # Dependents: str
-    # OnlineSecurity: str
-    # TechSupport: str
-    # avg_monthly_usage_ratio: float
-    # charge_per_tenure_month: float
-
+    avg_monthly_usage_ratio: float = Field(..., example=1.2, description="Engineered feature from preprocessing.py")
+    charge_per_tenure_month: float = Field(..., example=6.5, description="Engineered feature from preprocessing.py")
 
 class ChurnResponse(BaseModel):
     churn_probability: float
