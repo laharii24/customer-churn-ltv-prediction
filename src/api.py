@@ -83,6 +83,13 @@ def encode_input(features: CustomerFeatures) -> pd.DataFrame:
         df[col] = df[col].astype("category").cat.codes
     return df
 
+from fastapi.responses import RedirectResponse
+
+
+@app.get("/")
+def root():
+    """Redirect the base URL to the interactive API docs."""
+    return RedirectResponse(url="/docs")
 
 @app.get("/health")
 def health_check():
