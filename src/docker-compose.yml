@@ -1,0 +1,16 @@
+# docker-compose.yml
+# Week 4: Run the churn/LTV API as a service.
+
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: churn_ltv_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+    environment:
+      - DB_URL=sqlite:///churn.db
