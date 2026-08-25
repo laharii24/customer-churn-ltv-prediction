@@ -120,11 +120,11 @@ python src/test_api.py
 ```
 
 ### 3. Example output
-'''
+```
 ✅ Server is running. Proceeding with tests...
 
 Churn prediction response: {'churn_probability': 0.8352, 'churn_prediction': 'Yes'}
-'''
+```
 
 This means the API correctly identified a high-risk customer profile as 83.5% likely to churn.
 
